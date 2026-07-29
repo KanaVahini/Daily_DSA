@@ -8,8 +8,8 @@ using namespace std;
 
         Node(int value){
              data = value;
-             left = nullptr;
-             right = nullptr;
+             left = NULL;
+             right = NULL;
         }
     };
 
@@ -26,22 +26,23 @@ using namespace std;
         return root;
     }
 
-    Node* delete(Node* root,int value){
-        if(root == value){
-            delete root;
+    bool search(Node* root, int key){
+        if(root == NULL){
+            return false;
         }
-        if(root->left == NULL && root->right == NULL){
-            delete root;
+        if(root->data == key){
+            return true;
+        }
+        if(key < root->data){
+            return search(root->left,key);
+        }
+        else{
+            return search(root->right,key);
         }
     }
-    void inorder(Node* root){
-        if(root == NULL)
-            return;
-        inorder(root->left);
-        cout<<root->data<<" ";
-        inorder(root->right);
-    }
-    int main(){
+
+    
+int main(){
         Node* root = NULL;
         int n, value;
         cout<<"Enter number of nodes: ";
@@ -53,8 +54,9 @@ using namespace std;
             cin>>value;
             root = insert(root,value);
         }
-        cout<<"Inorder Traversal: ";
-        inorder(root);
+        int key;
+        cout<<"Enter key:";
+       
         return 0;
-    }
+}
 
